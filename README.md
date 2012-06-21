@@ -2,7 +2,7 @@
 A tiny JavaScript library that help use localStorage and sessionStorage (HTML5 API)
 
 ## Usage
-Download storage.min.js and include it in your HTML document:
+Download storage.min.js (~1.271 kb) and include it in your HTML document:
 
 ```html
 <script src="storage.min.js"></script>
