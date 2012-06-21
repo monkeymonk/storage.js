@@ -14,7 +14,7 @@
 			if(n === Object(n)){
 				for(var name in n)	if(n.hasOwnProperty(name))	this.type.setItem(name, n[name])
 			}
-			else	this.type.setItem(n, v)
+			else this.type.setItem(n, v)
 			return this
 		}, // set
 		
