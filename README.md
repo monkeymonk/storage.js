@@ -25,7 +25,7 @@ After that you can call any of methods that are explained in the following.
 ## Choose between local or session
 
 ```javascript
-storage.type = localStorage // or sessionStorage
+storage.type = localStorage; // or sessionStorage
 ```
 
 
