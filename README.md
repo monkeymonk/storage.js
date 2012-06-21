@@ -10,12 +10,14 @@ Download storage.min.js and include it in your HTML document:
 
 If you include storage.js as above, this script will add an object called `storage` to your global scope.
 
+
 ---
 
 storage.js also supports AMD. So if you want to include storage.js dynamically, you can just require it with any AMD loader, for example [RequireJS](http://requirejs.org/).
 Follow the instructions of your AMD loader to include storage.js.
 
 ---
+
 
 After that you can call any of methods that are explained in the following.
 
@@ -81,7 +83,6 @@ storage.get(['key1', 'key2'], 'default value');
 ```
 
 
-
 ## storage.del(name)
 
 This method allows you to remove cookies. It accepts an infinite number of keys or an array of keys.
@@ -92,23 +93,34 @@ storage.del('key1', 'key2');
 storage.del(['key1', 'key2']);
 ```
 
-## storage.clear()
 
-```javascript
-storage.clear();
-```
+## storage.clear()
+Simply call `storage.clear()` and every datas will be removed.
+
 
 ## storage.all()
 
 ```javascript
-storage.all();
+var datas = storage.all();
 ```
+
 
 ## storage.change()
-/!\ TODO
+/!\ TODO - Event catch
+
 
 ## Chaining
+The methods `set`, `del`, `clear` and `change` return the storage object and therefore enable chaining.
 
 ```javascript
-storage.clear().set('key', 'value').get('key');
+storage.clear().change(function(){ alert('Storage change!') }).set('key', 'value').get('key');
 ```
+
+
+## Contribute
+If you find any bugs in this script or have ideas how to improve it please let me know by creating an [issue](https://github.com/monkeymonk/storage.js/issues). 
+
+You are also very welcome to contribute to the code here on github.
+
+
+Enjoy!
