@@ -1,4 +1,5 @@
-# storage.js - A tiny JavaScript library that help use localStorage and sessionStorage (HTML5 API)
+# storage.js
+A tiny JavaScript library that help use localStorage and sessionStorage (HTML5 API)
 
 ## Usage
 Download storage.min.js and include it in your HTML document:
