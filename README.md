@@ -2,6 +2,7 @@
 
 ## Usage
 Download storage.min.js and include it in your HTML document:
+
 `<script src="storage.min.js"></script>`
 
 
