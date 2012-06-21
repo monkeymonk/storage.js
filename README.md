@@ -85,7 +85,7 @@ storage.get(['key1', 'key2'], 'default value');
 
 ## storage.del(name)
 
-This method allows you to remove cookies. It accepts an infinite number of keys or an array of keys.
+This method allows you to remove datas. It accepts an infinite number of keys or an array of keys.
 
 ```javascript
 storage.del('key');
