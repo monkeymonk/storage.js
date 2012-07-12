@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Storage.js by monkeymonk</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Storage.js</h1>
+        <p>A tiny JavaScript library that help use localStorage and sessionStorage (HTML5 API)</p>
+
+        <p class="view"><a href="https://github.com/monkeymonk/storage.js">View the Project on GitHub <small>monkeymonk/storage.js</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/monkeymonk/storage.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/monkeymonk/storage.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/monkeymonk/storage.js">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>storage.js</h1>
+
+<p>A tiny JavaScript library that help use localStorage and sessionStorage (HTML5 API)</p>
+
+<h2>Usage</h2>
+
+<p>Download storage.min.js (~1.271 kb) and include it in your HTML document:</p>
+
+<div class="highlight">
+<pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"storage.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre>
+</div>
+
+
+<p>If you include storage.js as above, this script will add an object called <code>storage</code> to your global scope.</p>
+
+<hr><p>storage.js also supports AMD. So if you want to include storage.js dynamically, you can just require it with any AMD loader, for example <a href="http://requirejs.org/">RequireJS</a>.
+Follow the instructions of your AMD loader to include storage.js.</p>
+
+<hr><p>After that you can call any of methods that are explained in the following.</p>
+
+<h2>Choose between local or session</h2>
+
+<div class="highlight">
+<pre><span class="nx">storage</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="nx">localStorage</span><span class="p">;</span> <span class="c1">// or sessionStorage</span>
+</pre>
+</div>
+
+
+<h2>storage.enabled()</h2>
+
+<div class="highlight">
+<pre><span class="k">if</span> <span class="p">(</span><span class="nx">storage</span><span class="p">.</span><span class="nx">enabled</span><span class="p">())</span> <span class="p">{</span>
+  <span class="c1">// Do stuff with local/session storage</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="c1">// Fallback</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<h2>storage.set(name, value)</h2>
+
+<div class="highlight">
+<pre><span class="nx">storage</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+</pre>
+</div>
+
+
+<p>You can also set several values at once:</p>
+
+<div class="highlight">
+<pre><span class="nx">storage</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span>
+   <span class="nx">key1</span><span class="o">:</span> <span class="s1">'value1'</span><span class="p">,</span>
+   <span class="nx">key2</span><span class="o">:</span> <span class="s1">'value2'</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<h2>storage.get(name)</h2>
+
+<div class="highlight">
+<pre><span class="nx">storage</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</pre>
+</div>
+
+
+<p>Passing just one key like this will return a string. You can also pass an array of keys:</p>
+
+<div class="highlight">
+<pre><span class="nx">storage</span><span class="p">.</span><span class="nx">get</span><span class="p">([</span><span class="s1">'key1'</span><span class="p">,</span> <span class="s1">'key2'</span><span class="p">]);</span>
+</pre>
+</div>
+
+
+<p>This will always return an object. The keys of this object will be the keys you passed and the values are the corresponding values.</p>
+
+<p>In case you want to add a default value you can use the second parameter.</p>
+
+<div class="highlight">
+<pre><span class="nx">storage</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'default value'</span><span class="p">);</span>
+</pre>
+</div>
+
+
+<p>This also works with several keys:</p>
+
+<div class="highlight">
+<pre><span class="nx">storage</span><span class="p">.</span><span class="nx">get</span><span class="p">([</span><span class="s1">'key1'</span><span class="p">,</span> <span class="s1">'key2'</span><span class="p">],</span> <span class="s1">'default value'</span><span class="p">);</span>
+</pre>
+</div>
+
+
+<h2>storage.del(name)</h2>
+
+<p>This method allows you to remove datas. It accepts an infinite number of keys or an array of keys.</p>
+
+<div class="highlight">
+<pre><span class="nx">storage</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s1">'key'</span><span class="p">);</span>
+<span class="nx">storage</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s1">'key1'</span><span class="p">,</span> <span class="s1">'key2'</span><span class="p">);</span>
+<span class="nx">storage</span><span class="p">.</span><span class="nx">del</span><span class="p">([</span><span class="s1">'key1'</span><span class="p">,</span> <span class="s1">'key2'</span><span class="p">]);</span>
+</pre>
+</div>
+
+
+<h2>storage.clear()</h2>
+
+<p>Simply call <code>storage.clear()</code> and every datas will be removed.</p>
+
+<h2>storage.all()</h2>
+
+<div class="highlight">
+<pre><span class="kd">var</span> <span class="nx">datas</span> <span class="o">=</span> <span class="nx">storage</span><span class="p">.</span><span class="nx">all</span><span class="p">();</span>
+</pre>
+</div>
+
+
+<h2>storage.change()</h2>
+
+<p>/!\ TODO - Event catch</p>
+
+<h2>Chaining</h2>
+
+<p>The methods <code>set</code>, <code>del</code>, <code>clear</code> and <code>change</code> return the storage object and therefore enable chaining.</p>
+
+<div class="highlight">
+<pre><span class="nx">storage</span><span class="p">.</span><span class="nx">clear</span><span class="p">().</span><span class="nx">change</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">'Storage change!'</span><span class="p">)</span> <span class="p">}).</span><span class="nx">set</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">'key'</span><span class="p">);</span>
+</pre>
+</div>
+
+
+<h2>Contribute</h2>
+
+<p>If you find any bugs in this script or have ideas how to improve it please let me know by creating an <a href="https://github.com/monkeymonk/storage.js/issues">issue</a>. </p>
+
+<p>You are also very welcome to contribute to the code here on github.</p>
+
+<p>Enjoy!</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/monkeymonk">monkeymonk</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
