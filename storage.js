@@ -1,72 +1,113 @@
-!function(window, document, undefined){
+/**
+ * storage.js
+ * @author Stéphan Zych <info@monkeymonk.be>
+ * @copyriht 2010-2011 Stéphan Zych <info@monkeymonk.be>
+ * @license New BSD License <http://creativecommons.org/licenses/BSD/>
+ */
+
+if (!window.storage) {
+	window.storage = {};
+}
+
+(function (window, document, undefined) {
+	"use strict";
+
+
 	var storage = {
-		type: localStorage, // localStorage, sessionStorage
-		
-		enabled: function(){
-			try{
-				return 'localStorage' in window && window['localStorage'] !== null
-			}catch(e){
-				return false
+		type: 'localStorage', // localStorage, sessionStorage
+
+
+		enabled: function () {
+			try {
+				return storage.type in window && window[storage.type] !== null;
+			} catch (e) {
+				return false;
 			}
 		}, // enabled
-		
-		set: function(n, v){
-			if(n === Object(n)){
-				for(var name in n)	if(n.hasOwnProperty(name))	this.type.setItem(name, n[name])
-			}
-			else this.type.setItem(n, v)
-			return this
-		}, // set
-		
-		get: function(n, fallback){
-			var values = storage.all()
-			if(Object.prototype.toString.call(n) == "[object Array]"){
-				var r = {}
-				for(var i = 0, l = n.length; i < l; i++){
-					var v = n[i]
-					r[v] = values[v] || fallback
+
+
+		set: function (sName, mValue) {
+			if (sName === Object(sName)) {
+				for (var name in sName) {
+					if (sName.hasOwnProperty(name)) {
+						this.type.setItem(name, sName[name]);
+					}
 				}
-				return r
+			} else {
+				this.type.setItem(sName, mValue);
 			}
-			else	return values[n] || fallback
+
+			return this;
+		}, // set
+
+
+		get: function (sName, fallback) {
+			var values = storage.all();
+
+			if (Object.prototype.toString.call(sName) === '[object Array]') {
+				var result = {};
+
+				for (var i = 0, length = sName.length; i < length; i++) {
+					var val = sName[i];
+					result[val] = values[val] || fallback;
+				}
+
+				return result;
+			} else {
+				return values[sName] || fallback;
+			}
 		}, // get
-		
-		del: function(n){
-			n = Object.prototype.toString.call(n) == "[object Array]" ? n : [n]
-			for(var i = 0, l = n.length; i < l; i++){
-				this.type.removeItem(n[i])
+
+
+		del: function (sName) {
+			sName = Object.prototype.toString.call(sName) === '[object Array]' ? sName : [sName];
+
+			for (var i = 0, length = sName.length; i < length; i++) {
+				this.type.removeItem(sName[i]);
 			}
-			return this
+
+			return this;
 		}, // del
-		
-		clear: function(){
-			this.type.clear()
-			return this
+
+
+		clear: function () {
+			this.type.clear();
+
+			return this;
 		}, // clear
-		
-		all: function(){
-			var result = {}
-			for(var i = 0, max = this.type.length; i < max; i++){
-				var k = this.type.key(i), v = this.type.getItem(k)
-				result[k] = v
+
+
+		all: function () {
+			var result = {};
+
+			for (var i = 0, max = this.type.length; i < max; i++) {
+				var key = this.type.key(i), val = this.type.getItem(key);
+
+				result[key] = val;
 			}
-			return result
+
+			return result;
 		}, // all
-		
-		change: function(cb){ // ??
-			function onStorageChange(e){
-				if(!e)	e = window.event
-				cb.call(storage, storage.all())
+
+		change: function (callback) {
+			var onStorageChange = function (e) {
+				if (!e) {
+					e = window.event;
+				}
+
+				callback.call(storage, storage.all());
+			};
+
+			if (window.addEventListener) {
+				window.addEventListener('storage', onStorageChange, false);
+			} else {
+				window.attachEvent('onstorage', onStorageChange);
 			}
-			
-			if(window.addEventListener)	window.addEventListener('storage', onStorageChange, false)
-			else	window.attachEvent('onstorage', onStorageChange)
-			
-			return this
+
+			return this;
 		} // change
-	} // storage
-	
-	if(typeof define === 'function' && define.amd)	define(function(){return storage})
-	else window.storage = storage
-}(window, document)
-// Copyright (c) 2012 Stéphan Zych (monkeymonk.be), https://github.com/monkeymonk https://github.com/monkeymonk/storage.js
+	}; // storage
+
+	window.storage = storage;
+
+}(window, document)); // Copyright (c) 2012 Stéphan Zych (monkeymonk.be), https://github.com/monkeymonk https://github.com/monkeymonk/storage.js
